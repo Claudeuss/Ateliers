@@ -1,3 +1,6 @@
+import 'dart:ffi';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -11,21 +14,28 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  int number = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text(
+          "Cart",
+          style: GoogleFonts.poppins(
+              textStyle: TextStyle(color: Colors.blue[500], fontSize: 20)),
+        ),
         backgroundColor: Colors.white,
         foregroundColor: Colors.blue,
         elevation: 0,
       ),
       body: ListView.builder(
-          itemCount: 2,
+          itemCount: 10,
           itemBuilder: ((context, index) {
             return Padding(
               padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
               child: Container(
-                width: 220,
+                margin: EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+                padding: EdgeInsets.all(5),
                 height: 100,
                 decoration: BoxDecoration(
                     color: Colors.white,
@@ -39,21 +49,24 @@ class _CartPageState extends State<CartPage> {
                     ],
                     borderRadius: BorderRadius.circular(5)),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Container(
                       width: 80,
-                      height: 100,
+                      height: 110,
                       decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.horizontal(left: Radius.circular(5)),
+                          borderRadius: BorderRadius.horizontal(
+                              left: Radius.circular(5),
+                              right: Radius.circular(5)),
                           image: DecorationImage(
                               fit: BoxFit.cover,
                               image: AssetImage("assets/images/landing.png"))),
                     ),
                     Container(
-                      width: 150,
+                      width: 145,
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 4),
+                        horizontal: 8,
+                      ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -73,6 +86,7 @@ class _CartPageState extends State<CartPage> {
                               flex: 2,
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Text(
                                     "Rp.12.000.000",
@@ -88,37 +102,68 @@ class _CartPageState extends State<CartPage> {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(vertical: 0),
+                      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 0),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          IconButton(
-                              onPressed: () {},
-                              icon: Icon(
+                          InkWell(
+                            child: Container(
+                              child: Icon(
                                 Icons.delete_outline,
                                 size: 20,
                                 color: Colors.red,
-                              )),
-                          Row(
-                            children: [
-                              IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.add_circle_outline,
-                                    size: 20,
-                                  )),
-                              Text(
-                                "0",
-                                style: GoogleFonts.poppins(
-                                    textStyle: TextStyle(fontSize: 14)),
                               ),
-                              IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.remove_circle_outline,
-                                    size: 20,
-                                  ))
+                            ),
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    number--;
+                                  });
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.all(4),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20),
+                                      border: Border.all(width: 1)),
+                                  child: Icon(
+                                    CupertinoIcons.minus,
+                                    size: 14,
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 10),
+                                child: Text(
+                                  number.toString(),
+                                  style: GoogleFonts.poppins(
+                                      textStyle: TextStyle(fontSize: 14)),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    number++;
+                                  });
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.all(4),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20),
+                                      border: Border.all(width: 1)),
+                                  child: Icon(
+                                    CupertinoIcons.plus,
+                                    size: 14,
+                                  ),
+                                ),
+                              )
                             ],
                           ),
                         ],
@@ -129,6 +174,46 @@ class _CartPageState extends State<CartPage> {
               ),
             );
           })),
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.symmetric(horizontal: 15),
+        width: MediaQuery.of(context).size.width,
+        height: 70,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+                color: Colors.grey.shade300,
+                blurRadius: 3,
+                spreadRadius: 3,
+                offset: Offset(0, 3)),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "Rp.15.000.000,00",
+              style: GoogleFonts.poppins(
+                  textStyle: TextStyle(fontSize: 18, color: Colors.black)),
+            ),
+            ElevatedButton(
+                onPressed: () {},
+                child: Container(
+                  width: 100,
+                  height: 40,
+                  decoration: BoxDecoration(),
+                  child: Center(
+                    child: Text(
+                      "Confirm",
+                      style: GoogleFonts.poppins(
+                          textStyle:
+                              TextStyle(color: Colors.white, fontSize: 13)),
+                    ),
+                  ),
+                ))
+          ],
+        ),
+      ),
     );
   }
 }

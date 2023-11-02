@@ -1,4 +1,5 @@
 import 'package:apps_ateliers/category.dart';
+import 'package:apps_ateliers/serviceform.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
@@ -93,7 +94,10 @@ class _HomePageState extends State<HomePage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ServiceForm()));
+                  },
                   child: Container(
                     width: 300,
                     decoration: BoxDecoration(),
