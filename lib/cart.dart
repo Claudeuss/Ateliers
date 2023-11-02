@@ -26,7 +26,7 @@ class _CartPageState extends State<CartPage> {
               padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
               child: Container(
                 width: 220,
-                height: 80,
+                height: 100,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     boxShadow: [
@@ -42,7 +42,7 @@ class _CartPageState extends State<CartPage> {
                   children: [
                     Container(
                       width: 80,
-                      height: 80,
+                      height: 100,
                       decoration: BoxDecoration(
                           borderRadius:
                               BorderRadius.horizontal(left: Radius.circular(5)),
@@ -55,7 +55,7 @@ class _CartPageState extends State<CartPage> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 4),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
@@ -76,6 +76,7 @@ class _CartPageState extends State<CartPage> {
                                 children: [
                                   Text(
                                     "Rp.12.000.000",
+                                    textAlign: TextAlign.start,
                                     style: GoogleFonts.poppins(
                                         textStyle: TextStyle(
                                             color: Colors.blue.shade500,
@@ -87,26 +88,39 @@ class _CartPageState extends State<CartPage> {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(vertical: 4),
-                      child: Row(
+                      padding: EdgeInsets.symmetric(vertical: 0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           IconButton(
                               onPressed: () {},
                               icon: Icon(
-                                Icons.add_circle_outline,
+                                Icons.delete_outline,
                                 size: 20,
+                                color: Colors.red,
                               )),
-                          Text(
-                            "0",
-                            style: GoogleFonts.poppins(
-                                textStyle: TextStyle(fontSize: 14)),
+                          Row(
+                            children: [
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.add_circle_outline,
+                                    size: 20,
+                                  )),
+                              Text(
+                                "0",
+                                style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(fontSize: 14)),
+                              ),
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.remove_circle_outline,
+                                    size: 20,
+                                  ))
+                            ],
                           ),
-                          IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.remove_circle_outline,
-                                size: 20,
-                              ))
                         ],
                       ),
                     )
