@@ -34,7 +34,7 @@ class _ListPageState extends State<ListPage> {
         ],
       ),
       body: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
         child: Column(
           children: [
             Expanded(
