@@ -35,124 +35,103 @@ class _ListPageState extends State<ListPage> {
               icon: Icon(Icons.shopping_cart_outlined))
         ],
       ),
-      body: Container(
-        padding: EdgeInsets.only(left: 20, right: 20, top: 10),
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-              Colors.blue.shade800,
-              Colors.blue.shade600,
-              Colors.blue.shade400
-            ])),
-        constraints: BoxConstraints(
-            maxHeight: double.infinity,
-            maxWidth: MediaQuery.of(context).size.width),
-        child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.7,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                mainAxisExtent: 250),
-            itemCount: 10,
-            shrinkWrap: true,
-            itemBuilder: (BuildContext ctx, index) {
-              return InkWell(
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => DetailPage()));
-                },
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    // boxShadow: [
-                    //   BoxShadow(
-                    //       color: Colors.grey.shade300,
-                    //       blurRadius: 4,
-                    //       spreadRadius: 2,
-                    //       offset: Offset(0, 3),
-                    //       blurStyle: BlurStyle.normal)
-                    // ]
-                  ),
-                  child: Column(
-                    children: [
-                      ClipRRect(
-                        borderRadius:
-                            BorderRadius.vertical(top: Radius.circular(10)),
-                        child: Image.asset(
-                          'assets/images/landing.png',
-                          fit: BoxFit.cover,
-                          height: 160,
-                          width: double.infinity,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.only(left: 20, right: 20, top: 10),
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [Colors.blue.shade50, Colors.blue.shade50])),
+          constraints: BoxConstraints(
+              maxHeight: double.infinity,
+              maxWidth: MediaQuery.of(context).size.width),
+          child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.7,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                  mainAxisExtent: 220),
+              itemCount: 10,
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (BuildContext ctx, index) {
+                return InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => DetailPage()));
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ClipRRect(
+                          borderRadius:
+                              BorderRadius.vertical(top: Radius.circular(10)),
+                          child: Image.asset(
+                            'assets/images/landing.png',
+                            fit: BoxFit.cover,
+                            height: 160,
+                            width: double.infinity,
+                          ),
                         ),
-                      ),
-                      // Container(
-                      //   height: 160,
-                      //   width: 160,
-                      //   decoration: BoxDecoration(
-                      //       borderRadius: BorderRadius.only(
-                      //           topRight: Radius.circular(10),
-                      //           topLeft: Radius.circular(10)),
-                      //       image: DecorationImage(
-                      //         image: AssetImage("assets/images/landing.png"),
-                      //         fit: BoxFit.fill,
-                      //       )),
-                      // ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 5, vertical: 2),
-                        child: Row(
-                          children: [
-                            Expanded(
-                                flex: 7,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      height: 35,
-                                      child: Text(
-                                        "brembo rc hansfb abfms",
-                                        style: GoogleFonts.poppins(
-                                            textStyle: TextStyle(fontSize: 13)),
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 2,
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 25,
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 2),
-                                      child: Text(
-                                        "Rp.20.000.000",
-                                        style: GoogleFonts.poppins(
-                                            textStyle: TextStyle(
-                                                color: Colors.blue[600])),
-                                      ),
-                                    )
-                                  ],
-                                )),
-                            Expanded(
-                                flex: 2,
-                                child: Center(
-                                  child: IconButton(
-                                      onPressed: () {},
-                                      icon: Icon(
-                                        Icons.add_circle_outline,
-                                        color: Colors.grey[600],
-                                      )),
-                                ))
-                          ],
+                        Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 5, vertical: 4),
+                          child: Text(
+                            "Nissan Skyline hafs hasffd",
+                            style: GoogleFonts.poppins(
+                                textStyle: TextStyle(
+                              color: Colors.black,
+                              fontSize: 15,
+                              overflow: TextOverflow.fade,
+                            )),
+                            maxLines: 1,
+                          ),
                         ),
-                      )
-                    ],
+                        // SizedBox(
+                        //   height: 20,
+                        // ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 6),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Rp.20.000.000",
+                                style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                        color: Colors.blue, fontSize: 13)),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(30),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.grey.shade300,
+                                          blurRadius: 5,
+                                          spreadRadius: 0.5)
+                                    ]),
+                                padding: EdgeInsets.all(2),
+                                child: Icon(Icons.add,
+                                    color: Colors.grey.shade600, size: 20),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              );
-            }),
+                );
+              }),
+        ),
       ),
     );
   }

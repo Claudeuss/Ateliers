@@ -27,131 +27,151 @@ class _DetailPageState extends State<DetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         elevation: 0,
-        foregroundColor: Colors.black,
+        foregroundColor: Colors.blue,
+        scrolledUnderElevation: 5,
+        leadingWidth: 25,
+        title: Text(
+          "Detail",
+          style: GoogleFonts.poppins(
+            fontSize: 20,
+          ),
+        ),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          margin: EdgeInsets.symmetric(horizontal: 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Wheels",
-                style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
-                        color: Colors.grey[700],
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500)),
-              ),
-              Text(
-                "RCS Brembo Corsa Corta",
-                style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500)),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              CarouselSlider(
-                options: CarouselOptions(
-                  enlargeCenterPage: true,
-                  height: 250,
-                  viewportFraction: 1,
-                  scrollDirection: Axis.horizontal,
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      _current = index;
-                    });
-                  },
+      body: Container(
+        constraints: BoxConstraints(
+            maxHeight: MediaQuery.of(context).size.height,
+            maxWidth: MediaQuery.of(context).size.width),
+        decoration: BoxDecoration(
+          color: Colors.blue.shade50,
+        ),
+        child: SingleChildScrollView(
+          child: Container(
+            constraints: BoxConstraints(
+              minHeight: MediaQuery.of(context).size.height,
+            ),
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Wheels",
+                  style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                          color: Colors.grey[700],
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500)),
                 ),
-                items: imgList
-                    .map((item) => Container(
-                          child: Container(
-                            margin: EdgeInsets.all(5.0),
-                            child: ClipRRect(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(5.0)),
-                                child: Stack(
-                                  children: <Widget>[
-                                    Image.network(
-                                      item,
-                                      fit: BoxFit.cover,
-                                      width: 350,
-                                      height: 250,
-                                    ),
-                                    // Positioned(
-                                    //   bottom: 0.0,
-                                    //   left: 0.0,
-                                    //   right: 0.0,
-                                    //   child: Container(
-                                    //     decoration: BoxDecoration(
-                                    //       gradient: LinearGradient(
-                                    //         colors: [
-                                    //           Color.fromARGB(200, 0, 0, 0),
-                                    //           Color.fromARGB(0, 0, 0, 0)
-                                    //         ],
-                                    //         begin: Alignment.bottomCenter,
-                                    //         end: Alignment.topCenter,
-                                    //       ),
-                                    //     ),
-                                    //     padding: EdgeInsets.symmetric(
-                                    //         vertical: 10.0, horizontal: 20.0),
-                                    //   ),
-                                    // ),
-                                  ],
-                                )),
-                          ),
-                        ))
-                    .toList(),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: imgList.asMap().entries.map((entry) {
-                  return GestureDetector(
-                    onTap: () => _controller.animateToPage(entry.key),
-                    child: Container(
-                      width: 10.0,
-                      height: 10.0,
-                      margin:
-                          EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: (Theme.of(context).brightness ==
-                                      Brightness.dark
-                                  ? Colors.white
-                                  : Colors.black)
-                              .withOpacity(_current == entry.key ? 0.9 : 0.4)),
-                    ),
-                  );
-                }).toList(),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Text(
-                "Description",
-                style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
-                        color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500)),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut pharetra sit amet aliquam.",
-                style: GoogleFonts.poppins(
-                    textStyle: TextStyle(
-                  fontSize: 15,
-                )),
-              )
-            ],
+                Text(
+                  "RCS Brembo Corsa Corta",
+                  style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                          color: Colors.black,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500)),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                CarouselSlider(
+                  options: CarouselOptions(
+                    enlargeCenterPage: true,
+                    height: 250,
+                    viewportFraction: 1,
+                    scrollDirection: Axis.horizontal,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        _current = index;
+                      });
+                    },
+                  ),
+                  items: imgList
+                      .map((item) => Container(
+                            child: Container(
+                              margin: EdgeInsets.all(5.0),
+                              child: ClipRRect(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(5.0)),
+                                  child: Stack(
+                                    children: <Widget>[
+                                      Image.network(
+                                        item,
+                                        fit: BoxFit.cover,
+                                        width: 350,
+                                        height: 250,
+                                      ),
+                                      // Positioned(
+                                      //   bottom: 0.0,
+                                      //   left: 0.0,
+                                      //   right: 0.0,
+                                      //   child: Container(
+                                      //     decoration: BoxDecoration(
+                                      //       gradient: LinearGradient(
+                                      //         colors: [
+                                      //           Color.fromARGB(200, 0, 0, 0),
+                                      //           Color.fromARGB(0, 0, 0, 0)
+                                      //         ],
+                                      //         begin: Alignment.bottomCenter,
+                                      //         end: Alignment.topCenter,
+                                      //       ),
+                                      //     ),
+                                      //     padding: EdgeInsets.symmetric(
+                                      //         vertical: 10.0, horizontal: 20.0),
+                                      //   ),
+                                      // ),
+                                    ],
+                                  )),
+                            ),
+                          ))
+                      .toList(),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: imgList.asMap().entries.map((entry) {
+                    return GestureDetector(
+                      onTap: () => _controller.animateToPage(entry.key),
+                      child: Container(
+                        width: 10.0,
+                        height: 10.0,
+                        margin: EdgeInsets.symmetric(
+                            vertical: 8.0, horizontal: 4.0),
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color:
+                                (Theme.of(context).brightness == Brightness.dark
+                                        ? Colors.white
+                                        : Colors.blue)
+                                    .withOpacity(
+                                        _current == entry.key ? 0.9 : 0.4)),
+                      ),
+                    );
+                  }).toList(),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "Description",
+                  style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                          color: Colors.black,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500)),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut pharetra sit amet aliquam.",
+                  style: GoogleFonts.poppins(
+                      textStyle: TextStyle(
+                    fontSize: 15,
+                  )),
+                )
+              ],
+            ),
           ),
         ),
       ),

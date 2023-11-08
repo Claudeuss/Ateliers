@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ServiceForm extends StatefulWidget {
@@ -24,13 +25,13 @@ class _ServiceFormState extends State<ServiceForm> {
                 maxWidth: MediaQuery.of(context).size.width),
             decoration: BoxDecoration(
                 gradient: LinearGradient(
-                    colors: [Colors.blue.shade600, Colors.blue.shade300],
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter)),
+                    colors: [Colors.blue.shade700, Colors.blue.shade500],
+                    begin: Alignment.topLeft,
+                    end: Alignment.topRight)),
             child: Column(
               children: [
                 Expanded(
-                  flex: 3,
+                  flex: 4,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -41,35 +42,37 @@ class _ServiceFormState extends State<ServiceForm> {
                           icon: Icon(
                             Icons.arrow_back,
                             color: Colors.white,
-                            size: 20,
+                            size: 25,
                           )),
                       Container(
-                        height: 120,
+                        height: 180,
                         width: double.infinity,
-                        margin: EdgeInsets.symmetric(horizontal: 20),
+                        margin:
+                            EdgeInsets.symmetric(horizontal: 25, vertical: 20),
                         decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('assets/images/landing.png'),
-                            fit: BoxFit.cover,
-                          ),
                           borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: SvgPicture.asset(
+                          'assets/images/vectorart-upload.svg',
+                          fit: BoxFit.cover,
+                          height: 150,
                         ),
                       )
                     ],
                   ),
                 ),
                 Expanded(
-                    flex: 7,
+                    flex: 6,
                     child: Container(
                       padding:
                           EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Colors.blue.shade50,
                           borderRadius:
                               BorderRadius.vertical(top: Radius.circular(20))),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
@@ -81,68 +84,90 @@ class _ServiceFormState extends State<ServiceForm> {
                                     fontWeight: FontWeight.w500)),
                           ),
                           SizedBox(
-                            height: 30,
+                            height: 50,
                           ),
                           TextFormField(
+                            style: GoogleFonts.poppins(
+                                textStyle: TextStyle(fontSize: 15)),
                             decoration: InputDecoration(
                                 hintText: 'Your Name',
+                                hintStyle: GoogleFonts.poppins(
+                                    textStyle: TextStyle(fontSize: 15)),
                                 icon: Icon(
                                   CupertinoIcons.person_crop_circle,
                                   size: 40,
                                 ),
                                 filled: true,
-                                fillColor: Colors.grey[300],
+                                fillColor: Colors.white,
                                 contentPadding: EdgeInsets.symmetric(
                                     vertical: 5, horizontal: 15),
                                 border: OutlineInputBorder(
                                     borderSide: BorderSide.none,
-                                    borderRadius: BorderRadius.circular(30))),
+                                    borderRadius: BorderRadius.circular(10))),
                           ),
                           SizedBox(
                             height: 20,
                           ),
                           TextFormField(
+                            style: GoogleFonts.poppins(
+                                textStyle: TextStyle(fontSize: 15)),
                             decoration: InputDecoration(
                                 hintText: 'Motorcycle',
+                                hintStyle: GoogleFonts.poppins(
+                                    textStyle: TextStyle(fontSize: 15)),
                                 icon: Icon(
                                   Icons.motorcycle_outlined,
                                   size: 40,
                                 ),
                                 filled: true,
-                                fillColor: Colors.grey[300],
+                                fillColor: Colors.white,
                                 contentPadding: EdgeInsets.symmetric(
                                     vertical: 5, horizontal: 15),
                                 border: OutlineInputBorder(
                                     borderSide: BorderSide.none,
-                                    borderRadius: BorderRadius.circular(30))),
+                                    borderRadius: BorderRadius.circular(10))),
                           ),
                           SizedBox(
                             height: 20,
                           ),
                           TextFormField(
+                            style: GoogleFonts.poppins(
+                                textStyle: TextStyle(fontSize: 15)),
                             decoration: InputDecoration(
                                 hintText: 'Address',
+                                hintStyle: GoogleFonts.poppins(
+                                    textStyle: TextStyle(fontSize: 15)),
                                 icon: Icon(
                                   Icons.location_pin,
                                   size: 40,
                                 ),
                                 filled: true,
-                                fillColor: Colors.grey[300],
+                                fillColor: Colors.white,
                                 contentPadding: EdgeInsets.symmetric(
                                     vertical: 5, horizontal: 15),
                                 border: OutlineInputBorder(
                                     borderSide: BorderSide.none,
-                                    borderRadius: BorderRadius.circular(30))),
+                                    borderRadius: BorderRadius.circular(10))),
                           ),
                           SizedBox(
-                            height: 30,
+                            height: 50,
                           ),
-                          ElevatedButton(
+                          Container(
+                            width: 300,
+                            height: 40,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.blue.shade500,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10))),
                               onPressed: () {},
-                              child: Container(
-                                decoration:
-                                    BoxDecoration(color: Colors.blue.shade600),
-                              ))
+                              child: Text(
+                                'Confirm',
+                                style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(color: Colors.white)),
+                              ),
+                            ),
+                          )
                         ],
                       ),
                     ))
