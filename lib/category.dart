@@ -2,6 +2,7 @@ import 'package:apps_ateliers/listpage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_cube/flutter_cube.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class CategoryPage extends StatefulWidget {
@@ -82,6 +83,14 @@ class _CategoryPageState extends State<CategoryPage> {
                             decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(10)),
+                            child: Cube(
+                              onSceneCreated: (scene) {
+                                scene.world.add(Object(
+                                    fileName:
+                                        'assets/3d_object/oli motor.obj'));
+                                scene.camera.zoom = 10;
+                              },
+                            ),
                           ),
                         ),
                         Text(
