@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
                 colorFilter: ColorFilter.mode(
                     Color.fromRGBO(0, 6, 137, 70), BlendMode.darken))),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25),
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -55,12 +55,16 @@ class _HomePageState extends State<HomePage> {
                 height: 20,
               ),
               Text(
-                "aliquet sagittis id consectetur purus ut faucibus pulvinar elementum integer enim neque volutpat ac tincidunt vitae semper quis lectus nulla",
+                "Lorem ipsum dolor sit amet id consectetur pulvinar elementum integer enim neque volutpat ac tincidunt vitae semper quis",
                 style: GoogleFonts.poppins(
-                    textStyle: TextStyle(color: Colors.white, fontSize: 12)),
+                    textStyle: TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                )),
+                textAlign: TextAlign.center,
               ),
               SizedBox(
-                height: 80,
+                height: 70,
               ),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(

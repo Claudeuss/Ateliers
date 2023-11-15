@@ -1,4 +1,5 @@
 import 'package:apps_ateliers/listpage.dart';
+import 'package:babylonjs_viewer/babylonjs_viewer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -76,22 +77,15 @@ class _CategoryPageState extends State<CategoryPage> {
                     child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 5),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 5, horizontal: 5),
                           child: Container(
-                            width: 140,
-                            height: 160,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Cube(
-                              onSceneCreated: (scene) {
-                                scene.world.add(Object(
-                                    fileName:
-                                        'assets/3d_object/oli motor.obj'));
-                                scene.camera.zoom = 10;
-                              },
-                            ),
-                          ),
+                              height: 160,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: BabylonJSViewer(
+                                  src: 'assets/3d_object/bban.gltf')),
                         ),
                         Text(
                           "Wheels & Tires",
@@ -114,13 +108,15 @@ class _CategoryPageState extends State<CategoryPage> {
                   child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 5, horizontal: 5),
                         child: Container(
-                          width: 140,
                           height: 160,
                           decoration: BoxDecoration(
                               color: Colors.blue,
                               borderRadius: BorderRadius.circular(10)),
+                          child:
+                              BabylonJSViewer(src: 'assets/3d_object/oli.glb'),
                         ),
                       ),
                       Text(
@@ -151,13 +147,15 @@ class _CategoryPageState extends State<CategoryPage> {
                   child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 5, horizontal: 5),
                         child: Container(
-                          width: 140,
                           height: 160,
                           decoration: BoxDecoration(
                               color: Colors.blue,
                               borderRadius: BorderRadius.circular(10)),
+                          child: BabylonJSViewer(
+                              src: 'assets/3d_object/bban.gltf'),
                         ),
                       ),
                       Text(
@@ -175,26 +173,21 @@ class _CategoryPageState extends State<CategoryPage> {
                   width: 150,
                   height: 200,
                   decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.grey.shade300.withOpacity(0.5),
-                            spreadRadius: 3,
-                            blurRadius: 4,
-                            blurStyle: BlurStyle.normal,
-                            offset: Offset(0, 2))
-                      ]),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 5, horizontal: 5),
                         child: Container(
-                          width: 140,
                           height: 160,
                           decoration: BoxDecoration(
                               color: Colors.blue,
                               borderRadius: BorderRadius.circular(10)),
+                          child:
+                              BabylonJSViewer(src: 'assets/3d_object/oli.glb'),
                         ),
                       ),
                       Center(
