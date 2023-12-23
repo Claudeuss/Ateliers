@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "933227150825",
+    "project_id": "ateliers-a60ae",
+    "storage_bucket": "ateliers-a60ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:933227150825:android:fd03125793eb4e4c6cdf78",
+        "android_client_info": {
+          "package_name": "com.example.apps_ateliers"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjpp9X5DIiVbrqXMGxGoJPI3Ipe0rHLcU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

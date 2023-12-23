@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -16,13 +17,92 @@ int _current = 0;
 final CarouselController _controller = CarouselController();
 
 class DetailPage extends StatefulWidget {
-  const DetailPage({super.key});
+  final List<String> images;
+  const DetailPage(
+      {Key? key,
+      required this.sparepartId,
+      required this.name,
+      required this.category,
+      required this.desc,
+      required this.price,
+      required this.images})
+      : super(key: key);
+
+  final String name, category, desc, price, sparepartId;
 
   @override
   State<DetailPage> createState() => _DetailPageState();
 }
 
 class _DetailPageState extends State<DetailPage> {
+  // Inside the _DetailPageState class
+
+  Future<void> _showAddToCartDialog() async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: Text('Added to Cart'),
+          content: Text('The item has been added to your cart.'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _showItemAlreadyInCartDialog() async {
+    return showDialog(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: Text('Item Already in Cart'),
+          content: Text('This item is already in your cart.'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Future<void> _addToCart() async {
+    // Check if the item with the same sparepart-id already exists in the cart
+    var existingItem = await FirebaseFirestore.instance
+        .collection('cart')
+        .where('sparepart-id', isEqualTo: widget.sparepartId)
+        .get();
+
+    if (existingItem.docs.isEmpty) {
+      // If the item doesn't exist, add it to the cart
+      FirebaseFirestore.instance.collection('cart').doc().set({
+        'sparepart-id': widget.sparepartId,
+        'name': widget.name,
+        'desc': widget.desc,
+        'category': widget.category,
+        'price': widget.price,
+        'assets': widget.images,
+      });
+
+      // Show the add to cart dialog
+      _showAddToCartDialog();
+    } else {
+      // If the item already exists, show a dialog indicating that it's already in the cart
+      _showItemAlreadyInCartDialog();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +137,7 @@ class _DetailPageState extends State<DetailPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Wheels",
+                  widget.category,
                   style: GoogleFonts.poppins(
                       textStyle: TextStyle(
                           color: Colors.grey[700],
@@ -65,7 +145,7 @@ class _DetailPageState extends State<DetailPage> {
                           fontWeight: FontWeight.w500)),
                 ),
                 Text(
-                  "RCS Brembo Corsa Corta",
+                  widget.name,
                   style: GoogleFonts.poppins(
                       textStyle: TextStyle(
                           color: Colors.black,
@@ -87,8 +167,8 @@ class _DetailPageState extends State<DetailPage> {
                       });
                     },
                   ),
-                  items: imgList
-                      .map((item) => Container(
+                  items: widget.images
+                      .map((imageUrl) => Container(
                             child: Container(
                               margin: EdgeInsets.all(5.0),
                               child: ClipRRect(
@@ -97,7 +177,7 @@ class _DetailPageState extends State<DetailPage> {
                                   child: Stack(
                                     children: <Widget>[
                                       Image.network(
-                                        item,
+                                        imageUrl,
                                         fit: BoxFit.cover,
                                         width: 350,
                                         height: 250,
@@ -129,7 +209,7 @@ class _DetailPageState extends State<DetailPage> {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: imgList.asMap().entries.map((entry) {
+                  children: widget.images.asMap().entries.map((entry) {
                     return GestureDetector(
                       onTap: () => _controller.animateToPage(entry.key),
                       child: Container(
@@ -153,7 +233,7 @@ class _DetailPageState extends State<DetailPage> {
                   height: 10,
                 ),
                 Text(
-                  "Description",
+                  'Description Product',
                   style: GoogleFonts.poppins(
                       textStyle: TextStyle(
                           color: Colors.black,
@@ -164,7 +244,7 @@ class _DetailPageState extends State<DetailPage> {
                   height: 20,
                 ),
                 Text(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut pharetra sit amet aliquam.",
+                  widget.desc ?? '',
                   style: GoogleFonts.poppins(
                       textStyle: TextStyle(
                     fontSize: 15,
@@ -190,12 +270,17 @@ class _DetailPageState extends State<DetailPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "Rp.15.000.000,00",
+              "Rp${widget.price.toString()}",
               style: GoogleFonts.poppins(
                   textStyle: TextStyle(fontSize: 18, color: Colors.black)),
             ),
             ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  setState(() {
+                    // Call the _addToCart method instead of directly adding to the cart
+                    _addToCart();
+                  });
+                },
                 child: Container(
                   width: 100,
                   height: 40,

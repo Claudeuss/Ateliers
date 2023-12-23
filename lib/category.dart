@@ -115,8 +115,8 @@ class _CategoryPageState extends State<CategoryPage> {
                           decoration: BoxDecoration(
                               color: Colors.blue,
                               borderRadius: BorderRadius.circular(10)),
-                          child:
-                              BabylonJSViewer(src: 'assets/3d_object/oli.glb'),
+                          child: BabylonJSViewer(
+                              src: 'assets/3d_object/olimotor.glb'),
                         ),
                       ),
                       Text(
@@ -154,8 +154,8 @@ class _CategoryPageState extends State<CategoryPage> {
                           decoration: BoxDecoration(
                               color: Colors.blue,
                               borderRadius: BorderRadius.circular(10)),
-                          child: BabylonJSViewer(
-                              src: 'assets/3d_object/bban.gltf'),
+                          child:
+                              BabylonJSViewer(src: 'assets/3d_object/Siti.glb'),
                         ),
                       ),
                       Text(
@@ -186,8 +186,8 @@ class _CategoryPageState extends State<CategoryPage> {
                           decoration: BoxDecoration(
                               color: Colors.blue,
                               borderRadius: BorderRadius.circular(10)),
-                          child:
-                              BabylonJSViewer(src: 'assets/3d_object/oli.glb'),
+                          child: BabylonJSViewer(
+                              src: 'assets/3d_object/piston.glb'),
                         ),
                       ),
                       Center(
